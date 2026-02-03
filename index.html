@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Revente Madagascar — Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">RM</div>
+        <div>
+          <h1>Revente Madagascar</h1>
+          <div class="small">Pièces d'occasion • Matériel usagé • Friperie</div>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="open-dashboard" class="link">Tableau vendeur</button>
+        <button id="open-legal" class="link">CGU / Politique</button>
+        <button id="view-cart" class="btn-primary">Panier (<span id="cart-count">0</span>)</button>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2 style="margin-top:0">Annonces récentes</h2>
+        <div class="card-grid" id="product-list">
+          <!-- cartes générées par JS -->
+        </div>
+      </section>
+
+      <footer>
+        <div class="small">Livraison gratuite à partir de <strong>30 000 Ar</strong>. Sinon frais: <strong>3 000 Ar</strong>.</div>
+        <div class="small">Commission: <strong>15 %</strong> par vente. 10 premières publications gratuites.</div>
+      </footer>
+    </main>
+  </div>
+
+  <aside>
+    <h3>Panier</h3>
+    <div id="cart-items"></div>
+    <div class="cart-summary">
+      <div class="row"><div class="muted">Sous-total</div><div style="margin-left:auto" id="subtotal">0 Ar</div></div>
+      <div class="row"><div class="muted">Frais livraison</div><div style="margin-left:auto" id="shipping">0 Ar</div></div>
+      <div class="row"><div class="muted">Commission (15%)</div><div style="margin-left:auto" id="commission">0 Ar</div></div>
+      <div class="row total-row"><div>Total</div><div style="margin-left:auto" id="total">0 Ar</div></div>
+      <button id="checkout" class="btn-primary full">Passer commande</button>
+    </div>
+  </aside>
+
+  <!-- Modal product -->
+  <div id="modal-product" class="modal-back">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button id="close-product" class="modal-close">✕</button>
+      <div id="product-content"></div>
+    </div>
+  </div>
+
+  <!-- Modal legal -->
+  <div id="modal-legal" class="modal-back">
+    <div class="modal">
+      <button id="close-legal" class="modal-close">✕</button>
+      <h2>CGU • Conditions de vente • Politique de confidentialité</h2>
+      <p class="small">Ce prototype présente les règles principales. En production, rédiger des documents juridiques complets adaptés à Madagascar et consulter un avocat.</p>
+      <h3>Conditions générales d'utilisation</h3>
+      <ul>
+        <li>Plateforme de mise en relation entre vendeurs et acheteurs.</li>
+        <li>Responsabilité limitée pour l'exactitude des annonces.</li>
+      </ul>
+      <h3>Conditions de vente</h3>
+      <ul>
+        <li>Commission de <strong>15 %</strong> prélevée sur chaque vente.</li>
+        <li>Livraison gratuite pour achats ≥ <strong>30 000 Ar</strong>, sinon frais <strong>3 000 Ar</strong>.</li>
+        <li>10 premières publications gratuites par vendeur, puis publication payante.</li>
+      </ul>
+      <h3>Politique de confidentialité</h3>
+      <p class="small">Collecte minimale des données nécessaires aux transactions. Les données sont stockées et protégées conformément aux lois applicables.</p>
+    </div>
+  </div>
+
+  <!-- Modal dashboard -->
+  <div id="modal-dashboard" class="modal-back">
+    <div class="modal">
+      <button id="close-dashboard" class="modal-close">✕</button>
+      <h2>Tableau de bord vendeur</h2>
+      <div class="dashboard">
+        <div class="row stats-row">
+          <div class="stat" style="flex:1">
+            <div class="small">Ventes</div>
+            <div id="stat-sales" class="stat-value">0</div>
+          </div>
+          <div class="stat" style="flex:1">
+            <div class="small">Achats</div>
+            <div id="stat-purchases" class="stat-value">0</div>
+          </div>
+          <div class="stat" style="flex:1">
+            <div class="small">Commissions prélevées</div>
+            <div id="stat-comm" class="stat-value">0 Ar</div>
+          </div>
+        </div>
+
+        <div class="new-post">
+          <h3>Nouvelle annonce</h3>
+          <div class="small">Les 10 premières publications sont gratuites. Compteur: <strong id="post-counter">0</strong>/10 gratuites</div>
+          <div class="form-grid">
+            <input id="p-name" placeholder="Nom du produit" />
+            <input id="p-price" type="number" placeholder="Prix en Ar" />
+            <input id="p-seller" placeholder="Nom du vendeur" />
+            <textarea id="p-desc" rows="3" placeholder="Description"></textarea>
+            <button id="publish" class="btn-primary">Publier l'annonce</button>
+          </div>
+        </div>
+
+        <div class="history">
+          <h3>Historique (simulé)</h3>
+          <div id="seller-history" class="small">Aucune donnée</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
